@@ -1,6 +1,7 @@
 $(function () {
   displayCurrentDay();
   generateTimeBlocks();
+  loadEvents();
   
 
   $('.container').on('click', '.saveBtn', function () {
@@ -29,5 +30,14 @@ function generateTimeBlocks() {
 
 function getFormattedHour(hour) {
   return dayjs().hour(hour).format('hA');
+}
+
+function loadEvents() {
+  for (var hour = 9; hour <= 17; hour++) {
+    var savedEvent = localStorage.getItem('event-' + hour);
+    if (savedEvent) {
+      $('#hour-' + hour).val(savedEvent);
+    }
+  }
 }
 
