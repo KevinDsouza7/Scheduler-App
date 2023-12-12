@@ -2,7 +2,7 @@ $(function () {
   displayCurrentDay();
   generateTimeBlocks();
   loadEvents();
-  
+  updateColors();
 
   $('.container').on('click', '.saveBtn', function () {
     var hour = $(this).data('hour');
@@ -39,5 +39,13 @@ function loadEvents() {
       $('#hour-' + hour).val(savedEvent);
     }
   }
+}
+
+function updateColors() {
+  var currentHour = dayjs().hour();
+  $('.time-block').each(function () {
+    var hour = parseInt($(this).find('.saveBtn').data('hour'));
+    $(this).removeClass('past present future').addClass(hour < currentHour ? 'past' : hour === currentHour ? 'present' : 'future');
+  });
 }
 
