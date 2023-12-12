@@ -49,3 +49,6 @@ function updateColors() {
   });
 }
 
+function saveEvent(hour, eventText) {
+  localStorage.setItem('event-' + hour, eventText);
+}
